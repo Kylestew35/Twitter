@@ -1,0 +1,61 @@
+{% extends "base.html" %} {% block content %} {% load static %}
+<section class="content">
+  <section class="home">
+    <img class="techis" src="{% static 'img/techis.png' %}" />
+    <h1>Home</h1>
+  </section>
+    <section class="post_form">
+      <form action="/" method="POST" enctype="multipart/form-data"
+      >
+        {% csrf_token %}
+        <input type="text" name="name" placeholder="Who Are You?" required />
+        <textarea
+          name="body"
+          placeholder="What Is On Your Mind?"
+          required
+        ></textarea>
+        <input id="submit" type="submit" value="Tweet" />
+      </form>
+    </section>
+    <section class="posts">
+      <ul>
+        {% for post in posts %}
+        <li>
+          <form id="likes-form" action="{% url 'like' post.pk %}" method='POST'>
+            {% csrf_token %}
+          <button class="like-button" type="submit", name="post_id", value="{{ post.id }}" href="post_id">
+          &#10084;
+          </button>
+            {{post.like}}
+          </form>
+
+          <img
+            class="menu_icon js-menu-icon"
+            src="{% static 'img/option.png' %}"
+          />
+          <div class="menu">
+            <a href="/delete/{{ post.id }}/">Delete Post</a><br />
+            <a href="/edit/{{ post.id }}/">Edit Post</a>
+          </div>
+          <div class="logo">
+            <img src="{% static 'img/profile.jpg' %}" />
+          </div>
+          <div class="name_body">
+            <div class="name">{{ post.name }}</div>
+            <div class="datetime">{{ post.created_at }}</div>
+            <p id="post_body">{{ post.body }}</p>
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+    </section>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.js"
+      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+      crossorigin="anonymous"
+    ></script>
+    <script src="{% static 'js/posts.js' %}"></script>
+  </section>
+
+  {% endblock %}
+</section>
