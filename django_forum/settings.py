@@ -53,6 +53,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'django_forum.urls'
@@ -83,6 +84,17 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+
+DATABASES = {
+    'default': {
+        "ENGINE" : "django.db.backends.postgresql",
+        "NAME" : "dc1i703sd8rm79",
+        "USER" :"eersanwbvoifny",
+        "HOST" :"ec2-44-193-111-218.compute-1.amazonaws.com",
+        "PORT" : 5432,
+        "PASSWORD" :"f5bb9208a5c4e2c3cbf2f7eabb87c629c164eff2bc7b9de42f02b0de816b235b",
     }
 }
 
@@ -142,3 +154,5 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+STATIC_URL = "/static/"
