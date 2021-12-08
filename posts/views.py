@@ -7,7 +7,7 @@ from .forms import PostForm
 def index(request):
     # If the method is POST
     if request.method == 'POST':
-        form = PostForm(request.POST)
+        form = PostForm(request.POST, request.FILES)
         # If the form is valid
         if form.is_valid():
             # Yes, Save
@@ -21,7 +21,7 @@ def index(request):
             return HttpResponseRedirect(form.errors.as_json())
 
     # Get all posts, limit = 20
-    posts = Post.objects.all()[:20]
+    posts = Post.objects.all().order_by('-created_at')
 
     # Show
     return render(request, 'posts.html',

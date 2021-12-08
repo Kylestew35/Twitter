@@ -14,6 +14,7 @@
           placeholder="What Is On Your Mind?"
           required
         ></textarea>
+        <input type="file" name="image">
         <input id="submit" type="submit" value="Tweet" />
       </form>
     </section>
@@ -21,14 +22,6 @@
       <ul>
         {% for post in posts %}
         <li>
-          <form id="likes-form" action="{% url 'like' post.pk %}" method='POST'>
-            {% csrf_token %}
-          <button class="like-button" type="submit", name="post_id", value="{{ post.id }}" href="post_id">
-          &#10084;
-          </button>
-            {{post.like}}
-          </form>
-
           <img
             class="menu_icon js-menu-icon"
             src="{% static 'img/option.png' %}"
@@ -44,6 +37,18 @@
             <div class="name">{{ post.name }}</div>
             <div class="datetime">{{ post.created_at }}</div>
             <p id="post_body">{{ post.body }}</p>
+            <div class="picture">
+              {% if post.image.url %}
+            <img src="{{ post.image.url }}" />
+            {% endif %}
+            <form id="likes-form" action="{% url 'like' post.pk %}" method='POST'>
+              {% csrf_token %}
+            <button class="like-button" type="submit", name="post_id", value="{{ post.id }}" href="post_id">
+            &#10084;
+            </button>
+              {{post.like}}
+            </form>
+            </div>
           </div>
         </li>
         {% endfor %}

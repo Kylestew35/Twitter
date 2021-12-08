@@ -11,6 +11,10 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,7 +29,7 @@ SECRET_KEY = 'django-insecure-t^7yv$6#n@htt4srreg(v=&i+pc5-i&0k72r6&kbz^2qys+iyx
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -38,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'posts',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
@@ -48,6 +53,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'django_forum.urls'
@@ -78,6 +84,17 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+
+DATABASES = {
+    'default': {
+        "ENGINE" : "django.db.backends.postgresql",
+        "NAME" : "dc1i703sd8rm79",
+        "USER" :"eersanwbvoifny",
+        "HOST" :"ec2-44-193-111-218.compute-1.amazonaws.com",
+        "PORT" : 5432,
+        "PASSWORD" :"f5bb9208a5c4e2c3cbf2f7eabb87c629c164eff2bc7b9de42f02b0de816b235b",
     }
 }
 
@@ -120,6 +137,15 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+cloudinary.config(
+    cloud_name = "dtn5wyrvm",
+    api_key = "577786517479271",
+    api_secret = "ofML37uZJiffXDZ0w3dZ-TEQv9I",
+    secure = True,
+)
+
+
+
 STATICFILES_DIRS = [
     BASE_DIR / 'static'
 ]
@@ -128,3 +154,5 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+STATIC_URL = "/static/"
