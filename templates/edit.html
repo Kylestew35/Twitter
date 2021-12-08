@@ -14,9 +14,14 @@
           name="body"
           placeholder="What Is On Your Mind?"
           value="{{post.body}}"
-        ></input>
-        <a href="{%  url 'index' %}" >Cancel</a>
+        >
+      </input>
+      <div class="picture">
+        <img src="{{ post.image.url }}" style="width: 100%; height: 270px;" />
+      </div>
+        <!-- <a href="{%  url 'index' %}" >Cancel</a> -->
         <input id="submit" type="submit" value="Update" />
+        <button id="cancel" type="submit">Cancel</button>
       </form>
     </section>
     

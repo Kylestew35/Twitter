@@ -1,4 +1,5 @@
 from django.db import models
+from cloudinary.models import CloudinaryField
 
 
 class Post(models.Model):
@@ -17,4 +18,8 @@ class Post(models.Model):
 
     like = models.PositiveIntegerField(
         'like', default=0, blank=True, db_index=True
+    )
+
+    image = CloudinaryField(
+        'image', blank=True, db_index=True
     )

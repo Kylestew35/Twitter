@@ -60,30 +60,6 @@ Post
   position: relative;
 }
 
-.posts li .btn {
-  bottom: 10px;
-  left: 110px;
-  display: flex;
-  padding: 0px 0px;
-  list-style: none;
-  width: 15px;
-  height: 15px;
-  position: absolute;
-  border: none;
-}
-
-.posts li .btn .btn1 {
-  background-color: red;
-  bottom: 0px;
-  left: 0px;
-  display: block;
-  padding: 5px 5px;
-  list-style: none;
-  width: 15px;
-  height: 15px;
-  position: relative;
-}
-
 .posts li #clicks {
   bottom: 2px;
   left: 135px;
@@ -124,7 +100,7 @@ Post
 
 .posts li .logo img {
   width: 60%;
-  height: 40%;
+  border-radius: 50%;
 }
 
 .posts li .name_body {
@@ -139,8 +115,34 @@ Post
   color: grey;
 }
 
+.posts li .name_body .picture img {
+  width: 370px;
+  height: 370px;
+}
+
+#submit {
+  width: 25%;
+  background-color: rgb(29, 161, 242);
+  border-radius: 6px;
+  border: none;
+  color: white;
+}
+
+#cancel {
+  width: 25%;
+  background-color: rgb(29, 161, 242);
+  border-radius: 6px;
+  border: none;
+  color: white;
+  height: 36px;
+}
+
 @media screen and (max-width: 500px) {
   .posts li .name_body .name {
     font-size: 30px;
+  }
+  .posts li .name_body .picture img {
+    width: 240px;
+    height: 240px;
   }
 }
